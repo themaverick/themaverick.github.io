@@ -42,14 +42,14 @@ The most common training for embedding models is contrastive(InfoNCE) where for 
 
 
 
-$$
-L = \frac{1}{B} \sum_{i=1}^{B} 
+$$  
+L = \frac{1}{B} \sum_{i=1}^{B}
 - \log 
 \frac{
     \exp\big( \text{sim}(f(x_i), f(x_i^+)) / \tau \big)
 }{
     \sum_{j=1}^{B} \mathbf{1}_{[j \neq i]} \, \exp\big( \text{sim}(f(x_i), f(x_j)) / \tau \big)
-}
+}  
 $$
 
 where:
