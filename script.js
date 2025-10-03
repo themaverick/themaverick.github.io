@@ -16,7 +16,7 @@ function showPost(post) {
       return res.text();
     })
     .then(md => {
-      postContent.innerHTML = mdParser.parse(md);
+      postContent.innerHTML = mdParser.render(md);
 
       if (window.MathJax){
         MathJax.typesetPromise();
