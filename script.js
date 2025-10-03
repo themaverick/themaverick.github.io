@@ -16,6 +16,11 @@ function showPost(post) {
     })
     .then(md => {
       postContent.innerHTML = marked.parse(md);
+
+      if (window.MathJax){
+        MathJax.typesetPromise();
+      }
+
       postList.style.display = "none";
       blogTitle.textContent = post.title;
       postContent.style.display = "block";
