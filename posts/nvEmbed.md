@@ -42,7 +42,7 @@ The most common training for embedding models is contrastive(InfoNCE) where for 
 
 
 
-\[
+$$
 L = \frac{1}{B} \sum_{i=1}^{B} 
 - \log 
 \frac{
@@ -50,14 +50,14 @@ L = \frac{1}{B} \sum_{i=1}^{B}
 }{
     \sum_{j=1}^{B} \mathbf{1}_{[j \neq i]} \, \exp\big( \text{sim}(f(x_i), f(x_j)) / \tau \big)
 }
-\]
+$$
 
 where:
 
-- f(xᵢ) = embedding of sentence xᵢ
-- xᵢ⁺ = positive example corresponding to anchor xᵢ
-- sim(fᵢ, fⱼ) = fᵢ · fⱼ = cosine similarity
-- τ > 0 = temperature parameter
+- $f(x_i)$ = embedding of sentence $x_i$
+- $x_i^+$ = positive example corresponding to anchor $x_i$
+- $sim(f_i, f_j) = f_i · f_j$ = cosine similarity
+- $\tau > 0$ = temperature parameter
 - Denominator sums over all other sentences in the batch (negatives)
 
 This particular objective function is the in-batch variant of the InfoNCE loss where all of the other sentences in a batch are treated as negatives and hence make the whole training much more efficient. As the embeddings for all of the sentences can be calculated in a single forward pass once and more negatives give stronger gradients for the model to learn.
