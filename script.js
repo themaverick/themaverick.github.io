@@ -7,6 +7,7 @@ const postList = document.getElementById("post-list");
 const postContent = document.getElementById("post-content");
 const backButton = document.getElementById("back-button");
 const blogTitle = document.getElementById("blog-title");
+const mdParser = window.markdownit().use(window.markdownitMathjax3);
 
 function showPost(post) {
   fetch(`posts/${post.file}`)
@@ -15,7 +16,7 @@ function showPost(post) {
       return res.text();
     })
     .then(md => {
-      postContent.innerHTML = marked.parse(md);
+      postContent.innerHTML = mdParser.parse(md);
 
       if (window.MathJax){
         MathJax.typesetPromise();
