@@ -7,29 +7,31 @@ const postList = document.getElementById("post-list");
 const postContent = document.getElementById("post-content");
 const backButton = document.getElementById("back-button");
 const blogTitle = document.getElementById("blog-title");
-const mdParser = window.markdownit().use(window.markdownitMathjax3);
+// const mdParser = window.markdownit().use(window.markdownitMathjax3);
+const mdParser = window.markdownit();
 
-function showPost(post) {
-  fetch(`posts/${post.file}`)
-    .then(res => {
-      if (!res.ok) throw new Error("Failed to load post");
-      return res.text();
-    })
-    .then(md => {
-      postContent.innerHTML = mdParser.render(md);
+async function showPost(post) {
+  try {
+    const res = await fetch(`posts/${post.file}`);
+    if (!res.ok) throw new Error("Failed to load post");
 
-      if (window.MathJax){
-        MathJax.typesetPromise();
-      }
+    const md = await res.text();
+    postContent.innerHTML = mdParser.render(md);
 
-      postList.style.display = "none";
-      blogTitle.textContent = post.title;
-      postContent.style.display = "block";
-      backButton.style.display = "inline-block";
-    })
-    .catch(err => {
-      postContent.innerHTML = `<p>Error loading post: ${err.message}</p>`;
-    });
+    // Render Math
+    if (window.MathJax) {
+        MathJax.typesetPromise([postContent])
+          .then(() => console.log("Math rendered!"))
+          .catch((err) => console.error("MathJax error:", err));
+    }
+
+    postList.style.display = "none";
+    blogTitle.textContent = post.title;
+    postContent.style.display = "block";
+    backButton.style.display = "inline-block";
+  } catch (err) {
+    postContent.innerHTML = `<p>Error loading post: ${err.message}</p>`;
+  }
 }
 
 if (postList && postContent && backButton) {

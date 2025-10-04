@@ -4,11 +4,24 @@
   <meta charset="UTF-8" />
   <title>My Blog</title>
   <link rel="stylesheet" href="style.css" />
-  <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js">
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js" defer></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/markdown-it-mathjax3/dist/markdown-it-mathjax3.min.js" defer></script> -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[','\\]']]
+      },
+      options: {
+        skipHtmlTags: ['script','noscript','style','textarea','pre'],
+        processHtmlClass: 'arithmatex'
+      }
+    };
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it-mathjax3/dist/markdown-it-mathjax3.min.js"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="container">
@@ -20,8 +33,5 @@
 
     <article id="post-content" class="markdown-body" style="display: none;"></article>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
