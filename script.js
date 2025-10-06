@@ -8,7 +8,7 @@ const postContent = document.getElementById("post-content");
 const backButton = document.getElementById("back-button");
 const blogTitle = document.getElementById("blog-title");
 // const mdParser = window.markdownit().use(window.markdownitMathjax3);
-const mdParser = window.markdownit();
+const mdParser = window.markdownit({html: true});
 
 async function showPost(post) {
   try {

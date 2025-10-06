@@ -5,21 +5,21 @@
   <title>My Blog</title>
   <link rel="stylesheet" href="style.css" />
   <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js" defer></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/markdown-it-mathjax3/dist/markdown-it-mathjax3.min.js" defer></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it-mathjax3/dist/markdown-it-mathjax3.min.js" defer></script>
   <script>
     window.MathJax = {
       tex: {
-        inlineMath: [['$', '$'], ['\\(', '\\)']],
-        displayMath: [['$$','$$'], ['\\[','\\]']]
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        packages: ['base', 'ams', 'noerrors', 'noundefined']
       },
-      options: {
-        skipHtmlTags: ['script','noscript','style','textarea','pre'],
-        processHtmlClass: 'arithmatex'
+      svg: {
+        fontCache: 'global'
       }
     };
   </script>
-  <script id="MathJax-script" async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
   </script>
   <script src="script.js" defer></script>
 </head>
